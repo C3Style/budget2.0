@@ -1,6 +1,3 @@
 c3_budget_homepage:
     path:     /
     defaults: { _controller: C3BudgetBundle:Transaction:index }
-
-c3_budget_logout:
-    path:  /logout
