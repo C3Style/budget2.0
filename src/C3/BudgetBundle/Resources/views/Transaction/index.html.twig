@@ -1,0 +1,15 @@
+{% extends '::base.html.twig' %}
+
+ {% block body %}
+     {% for t in transactions %}
+         {{ t.getAmount() }}
+     {% endfor %}
+ {% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        jQuery(function ($) {
+            console.log("OK");
+        });
+    </script>
+{% endblock %}
