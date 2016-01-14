@@ -1,0 +1,42 @@
+{% extends "FOSUserBundle::layout_login.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+    <div id="forgot-box" class="forgot-box widget-box no-border">
+        <div class="widget-body">
+            <div class="widget-main">
+                <h4 class="header blue lighter bigger">
+                    <i class="ace-icon fa fa-users blue"></i>
+                    {{ 'resetting.request.title'|trans }}
+                </h4>
+                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST"
+                      class="fos_user_resetting_request">
+                    <fieldset>
+                        <label class="block clearfix {% if invalid_username is defined %} has-error {% endif %}">
+                            <span class="block input-icon input-icon-right">
+                                <input type="text" class="form-control"
+                                       id="username" name="username" required="required"
+                                       placeholder="{{ 'resetting.request.username'|trans }}"/>
+                                <i class="ace-icon fa fa-envelope"></i>
+                            </span>
+                            {% if invalid_username is defined %}
+                                <div class="help-block col-xs-12 col-sm-reset inline">
+                                    {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}) }}
+                                </div>
+                            {% endif %}
+                        </label>
+                        <div class="space"></div>
+                        <div class="clearfix">
+                            <button type="submit" class="width-65 pull-right btn btn-sm btn-primary">
+                                <span class="bigger-110">{{ 'resetting.request.submit'|trans }}</span>
+                                <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                            </button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div><!-- /.widget-main -->
+        </div><!-- /.widget-body -->
+    </div><!-- /.forgot-box -->
+{% endblock fos_user_content %}

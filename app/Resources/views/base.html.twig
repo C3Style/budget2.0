@@ -106,7 +106,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="profile.html">
+                                        <a href="{{ path('fos_user_profile_show') }}">
                                             <i class="ace-icon fa fa-user"></i>Profile
                                         </a>
                                     </li>
@@ -150,9 +150,15 @@
                     <li class="">
                         <a href="{{ path('c3_budget_homepage') }}">
                             <i class="menu-icon fa fa-tachometer"></i>
-                            <span class="menu-text">Home</span>
+                            <span class="menu-text">Accueil</span>
                         </a>
-
+                        <b class="arrow"></b>
+                    </li>
+                    <li class="">
+                        <a href="{{ path('c3_budget_add_transaction') }}">
+                            <i class="menu-icon fa fa-plus"></i>
+                            <span class="menu-text">Ajouter</span>
+                        </a>
                         <b class="arrow"></b>
                     </li>
                 </ul>

@@ -1,0 +1,67 @@
+{% extends "FOSUserBundle::layout_login.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <div id="signup-box" class="signup-box widget-box no-border">
+        <div class="widget-body">
+            <div class="widget-main">
+                <h4 class="header blue lighter bigger">
+                    <i class="ace-icon fa fa-users blue"></i>
+                    {{ 'registration.title'|trans }}
+                </h4>
+                <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST"
+                      class="fos_user_registration_register">
+                    <fieldset>
+                        {{ form_start(form) }}
+                        {{ form_errors(form) }}
+                        <label class="block clearfix{% if form.email.vars.errors|length %} has-error {% endif %}">
+                            <span class="block input-icon input-icon-right">
+                                {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'profile.show.email'|trans}}) }}
+                                <i class="ace-icon fa fa-envelope"></i>
+                            </span>
+                            {% for errorItem in form.email.vars.errors %}
+                                <div class="help-block col-xs-12 col-sm-reset inline">{{ errorItem.message }}</div>
+                            {% endfor %}
+                        </label>
+
+                        <label class="block clearfix {% if form.username.vars.errors|length %} has-error {% endif %}">
+                            <span class="block input-icon input-icon-right">
+                                {{ form_widget(form.username, {'attr': {'class': 'form-control', 'placeholder': 'security.login.username'|trans}}) }}
+                                <i class="ace-icon fa fa-user"></i>
+                            </span>
+                            {% for errorItem in form.username.vars.errors %}
+                                <div class="help-block col-xs-12 col-sm-reset inline">{{ errorItem.message }}</div>
+                            {% endfor %}
+                        </label>
+
+                        <label class="block clearfix {% if form.plainPassword.first.vars.errors|length %} has-error {% endif %}">
+                            <span class="block input-icon input-icon-right">
+                                {{ form_widget(form.plainPassword.first, {'attr': {'class': 'form-control', 'placeholder': 'security.login.password'|trans}}) }}
+                                <i class="ace-icon fa fa-lock"></i>
+                            </span>
+                            {% for errorItem in form.plainPassword.first.vars.errors %}
+                                <div class="help-block col-xs-12 col-sm-reset inline">{{ errorItem.message }}</div>
+                            {% endfor %}
+                        </label>
+
+                        <label class="block clearfix">
+                            <span class="block input-icon input-icon-right">
+                                {{ form_widget(form.plainPassword.second, {'attr': {'class': 'form-control', 'placeholder': 'security.login.repeat_password'|trans}}) }}
+                                <i class="ace-icon fa fa-retweet"></i>
+                            </span>
+                        </label>
+                        <div class="space"></div>
+                        <div class="clearfix">
+                            <button type="submit" class="width-65 pull-right btn btn-sm btn-primary">
+                                <span class="bigger-110">{{ 'registration.submit'|trans }}</span>
+                                <i class="ace-icon fa fa-arrow-right icon-on-right"></i>
+                            </button>
+                        </div>
+                        {{ form_end(form) }}
+                    </fieldset>
+                </form>
+            </div>
+        </div><!-- /.widget-body -->
+    </div><!-- /.signup-box -->
+{% endblock fos_user_content %}

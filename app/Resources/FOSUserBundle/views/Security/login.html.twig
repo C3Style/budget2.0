@@ -1,105 +1,91 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
+{% extends "FOSUserBundle::layout_login.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
-
 {% block fos_user_content %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     <form action="{{ path("fos_user_security_check") }}" method="post">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+        <div class="position-relative">
+            <div id="login-box" class="login-box visible widget-box no-border">
+                <div class="widget-body">
+                    <div class="widget-main">
+                        <h4 class="header blue lighter bigger">
+                            <i class="ace-icon fa fa-users blue"></i>
+                            {{ 'security.login.login'|trans }}
+                        </h4>
+                        {% if error %}
+                            <div class="alert alert-danger">
+                                <button class="close" data-dismiss="alert" type="button">
+                                    <i class="ace-icon fa fa-times"></i>
+                                </button>
+                                <strong>
+                                    <i class="ace-icon fa fa-times"></i>
+                                </strong>
+                                {{ error.messageKey|trans(error.messageData, 'security') }}
+                                <br>
+                            </div>
+                        {% endif %}
+                        <form>
+                            <fieldset>
+                                <label class="block clearfix">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="text" id="username" name="_username"
+                                               class="form-control"
+                                               value="{{ last_username }}" required="required"
+                                               placeholder="{{ 'security.login.username'|trans }}"/>
+                                        <i class="ace-icon fa fa-user"></i>
+                                    </span>
+                                </label>
 
-        <div class="main-container">
-            <div class="main-content">
-                <div class="row">
-                    <div class="col-sm-10 col-sm-offset-1">
-                        <div class="login-container">
-                            <div class="center">
-                                <h1>
-                                    <i class="ace-icon fa fa-leaf green"></i>
-                                    <span class="red">Login</span>
-                                </h1>
+                                <label class="block clearfix">
+                                    <span class="block input-icon input-icon-right">
+                                        <input type="password" id="password" name="_password"
+                                               required="required"
+                                               class="form-control"
+                                               placeholder="{{ 'security.login.password'|trans }}"/>
+                                        <i class="ace-icon fa fa-lock"></i>
+                                    </span>
+                                </label>
+                                <div class="space"></div>
+                                <div class="clearfix">
+                                    <label class="inline">
+                                        <input type="checkbox" id="remember_me" name="_remember_me"
+                                               value="on"/>
+                                        <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                                    </label>
+                                    <button type="submit"
+                                            class="width-35 pull-right btn btn-sm btn-primary">
+                                        <i class="ace-icon fa fa-key"></i>
+                                        <span class="bigger-110">{{ 'security.login.submit'|trans }}</span>
+                                    </button>
+                                </div>
+                                <div class="space-4"></div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <!-- /.widget-main -->
+                    <div class="toolbar clearfix">
+                        <div>
+                            <a href="{{ path('fos_user_resetting_request') }}"
+                               data-target="#forgot-box" class="user-signup-link">
+                                <i class="ace-icon fa fa-arrow-left"></i>
+                                {{ 'security.login.forgot_password'|trans }}
+                            </a>
                             </div>
 
-                            <div class="position-relative">
-                                <div id="login-box" class="login-box visible widget-box no-border">
-                                    <div class="widget-body">
-                                        <div class="widget-main">
-                                            <form>
-                                                <fieldset>
-                                                    <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="text" id="username" name="_username"
-                                                               class="form-control"
-                                                               value="{{ last_username }}" required="required"
-                                                               placeholder="{{ 'security.login.username'|trans }}"/>
-                                                        <i class="ace-icon fa fa-user"></i>
-                                                    </span>
-                                                    </label>
-
-                                                    <label class="block clearfix">
-                                                    <span class="block input-icon input-icon-right">
-                                                        <input type="password" id="password" name="_password"
-                                                               required="required"
-                                                               class="form-control"
-                                                               placeholder="{{ 'security.login.password'|trans }}"/>
-                                                        <i class="ace-icon fa fa-lock"></i>
-                                                    </span>
-                                                    </label>
-
-                                                    <div class="space"></div>
-
-                                                    <div class="clearfix">
-                                                        <label class="inline">
-                                                            <input type="checkbox" id="remember_me" name="_remember_me"
-                                                                   value="on"/>
-                                                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
-                                                        </label>
-
-                                                        <button type="submit"
-                                                                class="width-35 pull-right btn btn-sm btn-primary">
-                                                            <i class="ace-icon fa fa-key"></i>
-                                                            <span class="bigger-110">{{ 'security.login.submit'|trans }}</span>
-                                                        </button>
-                                                    </div>
-
-                                                    <div class="space-4"></div>
-                                                </fieldset>
-                                            </form>
-                                        </div>
-                                        <!-- /.widget-main -->
-
-                                        <div class="toolbar clearfix">
-                                            <div>
-                                                <a href="{{ path('fos_user_resetting_request') }}"
-                                                   data-target="#forgot-box" class="forgot-password-link">
-                                                <i class="ace-icon fa fa-arrow-left"></i>
-                                                    I forgot my password
-                                                </a>
-                                            </div>
-
-                                            <div>
-                                                <a href="{{ path('fos_user_registration_register') }}"
-                                                   data-target="#signup-box" class="user-signup-link">
-                                                I want to register
-                                                    <i class="ace-icon fa fa-arrow-right"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /.widget-body -->
-                                </div>
-                                <!-- /.login-box -->
+                        <div>
+                            <a href="{{ path('fos_user_registration_register') }}"
+                               data-target="#signup-box" class="user-signup-link">
+                                {{ 'security.login.register'|trans }}
+                                <i class="ace-icon fa fa-arrow-right"></i>
+                            </a>
                             </div>
                         </div>
                     </div>
-                    <!-- /.col -->
+                <!-- /.widget-body -->
                 </div>
-                <!-- /.row -->
+            <!-- /.login-box -->
             </div>
-            <!-- /.main-content -->
-        </div>
+
         <!-- /.main-container -->
     </form>
 {% endblock fos_user_content %}
