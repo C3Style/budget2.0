@@ -5,3 +5,9 @@ services:
 #    c3_budget.example:
 #        class: %c3_budget.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+  # Form extention for adding icons
+  budget.button_type_icon_extension:
+      class: C3\BudgetBundle\Form\Extension\ButtonTypeIconExtension
+      tags:
+          - { name: form.type_extension, alias: button }

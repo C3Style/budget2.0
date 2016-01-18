@@ -1,0 +1,13 @@
+# Transaction
+transaction:
+  controls:
+    create: Créer
+    update: Modifier
+    date: Dates
+    amount: Montant
+    description: Description
+
+  messages:
+    create: La transaction a correctement été créée
+    update: La transaction a correctement été modifiée
+    delete: La transaction a correctement été supprimée

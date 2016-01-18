@@ -40,6 +40,17 @@ class Transaction
     protected $description;
 
     /**
+     * Set id
+     *
+     * @param integer $id
+     * @return Transaction
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * Get id
      *
      * @return integer

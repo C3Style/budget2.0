@@ -1,6 +1,9 @@
 c3_budget_homepage:
-    path:     /
-    defaults: { _controller: C3BudgetBundle:Transaction:index }
-c3_budget_add_transaction:
-    path:     /add/
-    defaults: { _controller: C3BudgetBundle:Transaction:add }
+  path:     /transaction/index/{status}
+  defaults: { _controller: C3BudgetBundle:Transaction:index, status: '' }
+c3_budget_edit_transaction:
+  path:     /transaction/edit/{id}
+  defaults: { _controller: C3BudgetBundle:Transaction:edit, id: 0 }
+c3_budget_delete_transaction:
+  path:     /transaction/delete/{id}
+  defaults: { _controller: C3BudgetBundle:Transaction:delete, id: 0 }
